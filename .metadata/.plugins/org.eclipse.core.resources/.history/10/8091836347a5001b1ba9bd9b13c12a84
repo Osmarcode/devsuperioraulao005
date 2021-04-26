@@ -1,0 +1,29 @@
+package com.osmarcode.myfirstproject.repositories;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.stereotype.Component;
+
+import jdk.jfr.Category;
+
+
+@Component
+public class CategoryRepository {
+	
+	private Map<Long, Category> map;
+	//map => é uma coleção de pares chave valor
+	
+	public void save(Category obj) {
+		././././
+	}
+	
+	public Category findById(Long id) {
+		./././././.
+	}
+	
+	public List<Category> findAll(){
+		././././
+	}
+
+}

@@ -1,0 +1,37 @@
+package com.osmarcode.myfirstproject.repositories;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.stereotype.Component;
+
+import jdk.jfr.Category;
+
+
+@Component
+public class CategoryRepository {
+	
+	private Map<Long, Category> map = new HashMap<>();
+	//map => é uma coleção de pares (chave valor)
+	//aqui vou guardar uma coleção de pares (Long que será o id
+	//do tipo Category) então a categoria 1 será isso, a categoria 2
+	//será outra coisa, fica mais fácil de localizar um objeto 
+	//utilizando o id para buscar com mais facilidade
+	//Map no java é uma Interface e deve instanciar uma classe
+	//que implemente uma classe, igual a List com ArrayList
+	//
+	
+	public void save(Category obj) {
+		././././
+	}
+	
+	public Category findById(Long id) {
+		./././././.
+	}
+	
+	public List<Category> findAll(){
+		././././
+	}
+
+}

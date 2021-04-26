@@ -1,0 +1,50 @@
+package com.osmarcode.myfirstproject;
+
+import java.util.Arrays;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.osmarcode.myfirstproject.entities.Category;
+import com.osmarcode.myfirstproject.repositories.CategoryRepository;
+
+@SpringBootApplication //isso torna essa classe a principal
+public class MyfirstprojectApplication implements CommandLineRunner{
+//commandlinerunner vai iniciar um comando assim que startar a 
+//applicação, como é uma interface, portante existe a obrigação
+//de implementar, add métodos não implementandos
+	
+	
+	@Autowired //instancia automaticamente essa classe,
+	private CategoryRepository categoryRepository;
+	
+	public static void main(String[] args) {
+		SpringApplication.run(MyfirstprojectApplication.class, args);
+	}
+
+	@Override //dentro desse run o que for implementado
+	//dentro desse run será executado no start up da aplicação
+	//serão instanciadas as duas categorias
+	public void run(String... args) throws Exception {
+		Category cat1 = new Category(1L, "Electronics");
+		Category cat2 = new Category(2L, "Books");
+		//salvando essas duas categorias no map
+		//temos que injetar uma dependência também
+		
+		//instanciando novos produtos já passando os parâmetros
+		//e já linkando com a categoria
+		Product p1 = new Product(1L, "TV", 2200.00, cat1);
+		Product p2 = new Product(2L, "Domain Driven Design", 100.00, cat2);
+		Product p3 = new Product(3L, "PS5", 2800.00, cat1);
+		Product p4 = new Product(4L, "Docker", 100.00, cat2);
+		
+		cat1.getProducts().addAll(Arrays.asList(p1,p3));
+		cat2.getProducts().addAll(Arrays.asList(p2,p4));
+		
+		
+		
+	}
+
+}

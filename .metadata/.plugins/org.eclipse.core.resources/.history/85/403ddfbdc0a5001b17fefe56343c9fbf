@@ -1,0 +1,17 @@
+package com.osmarcode.myfirstproject;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class MyfirstprojectApplication implements CommandLineRunner{
+//commandlinerunner vai iniciar um comando assim que startar a 
+//applicação, como é uma interface, portante existe a obrigação
+//de implementar 
+
+	public static void main(String[] args) {
+		SpringApplication.run(MyfirstprojectApplication.class, args);
+	}
+
+}

@@ -1,0 +1,41 @@
+package com.osmarcode.myfirstproject;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.osmarcode.myfirstproject.entities.Category;
+import com.osmarcode.myfirstproject.repositories.CategoryRepository;
+
+@SpringBootApplication //isso torna essa classe a principal
+public class MyfirstprojectApplication implements CommandLineRunner{
+//commandlinerunner vai iniciar um comando assim que startar a 
+//applicação, como é uma interface, portante existe a obrigação
+//de implementar, add métodos não implementandos
+	
+	
+	@Autowired //instancia automaticamente essa classe,
+	private CategoryRepository categoryRepository;
+	
+	public static void main(String[] args) {
+		SpringApplication.run(MyfirstprojectApplication.class, args);
+	}
+
+	@Override //dentro desse run o que for implementado
+	//dentro desse run será executado no start up da aplicação
+	//serão instanciadas as duas categorias
+	public void run(String... args) throws Exception {
+		Category cat1 = new Category(1L, "Electronics");
+		Category cat2 = new Category(2L, "Books");
+		//salvando essas duas categorias no map
+		//temos que injetar uma dependência também
+		
+		//acessando o objeto para salvar as categorias
+		
+		
+		
+		
+	}
+
+}

@@ -1,0 +1,44 @@
+package com.osmarcode.myfirstproject.resources;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.osmarcode.myfirstproject.entities.Category;
+
+@RestController //define que essa classe será um recurso REST
+//mapping define o caminho por onde o recurso irá responder
+@RequestMapping(value = "/categories")
+public class CategoryResource {
+
+	
+	//quando for executado uma chamada no "/categorias"
+	//será chamado o GetMapping
+	//objeto que <> é considerado generic
+	//assinatura do método que retorna todas as categorias
+	@GetMapping 
+	public ResponseEntity<List<Category>> findAll(){
+		//list puxando do categoryrepository
+		List<Category> list = 
+		return ResponseEntity.ok().body(list);
+		
+		//ESSE .OK É QUANDO DÁ TUDO CERTO, RESPOSTA
+		//200 DO PROTOCOLO HTTP
+	}
+	
+	@GetMapping(value = "/{id}")//utilizando essa annotation
+	public ResponseEntity<Category> findById(@PathVariable Long id){
+		//@pathvariable ele vai adicionar no endereço 
+		//vai reconhecer o /1 do navegador por exemplo
+		//e vai se ajustar de acordo com o id do parâmetro
+		//do método
+		Category cat = new Category(1L, "Electronics");
+		return ResponseEntity.ok().body(cat);
+	}
+	
+}

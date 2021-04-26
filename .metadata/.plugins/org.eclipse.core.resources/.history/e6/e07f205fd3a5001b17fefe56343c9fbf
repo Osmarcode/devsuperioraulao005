@@ -1,0 +1,25 @@
+package com.osmarcode.myfirstproject.entities;
+
+public class Product {
+	
+	private Long id;
+	private String name;
+	private Double price;
+	
+	//composição de objeto auláo 004
+	@Autowired 
+	private Category category;
+
+	public Product() {
+	}
+
+	public Product(Long id, String name, Double price, Category category) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.category = category;
+	}
+	
+	
+}

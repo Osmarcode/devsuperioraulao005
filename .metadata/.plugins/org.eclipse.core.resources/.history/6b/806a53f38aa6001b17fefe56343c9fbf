@@ -1,0 +1,64 @@
+package com.osmarcode.myfirstproject.resources;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.osmarcode.myfirstproject.entities.Product;
+import com.osmarcode.myfirstproject.repositories.ProductRepository;
+
+@RestController //define que essa classe será um recurso REST
+//mapping define o caminho por onde o recurso irá responder
+@RequestMapping(value = "/categories")
+public class ProductResource {
+
+	
+	@Autowired //injeção de dependência automática
+	//sempre que instanciar um Productresource, ele sempre 
+	//terá automaticamente uma instancia do Productrepository
+	//que já está aqui logo abaixo na dependência da classe
+	//MAS PARA FUNCIONAR, NO ProductREPOSITORY FOI COLOCADO
+	//@COMPONENT 
+	private ProductRepository ProductRepository;
+	
+	
+	//quando for executado uma chamada no "/categorias"
+	//será chamado o GetMapping
+	//objeto que <> é considerado generic
+	//assinatura do método que retorna todas as categorias
+	@GetMapping 
+	public ResponseEntity<List<Product>> findAll(){
+		//list puxando do Productrepository fazendo uma instância
+		//usando injeção de dependência no springboot
+		//existem várias formas para implementar
+		/*
+		 * Com constructor
+		 * Com método set
+		 * Ou utilizando um framework
+		 * esse findAll vai acessar o db e mostrar na lista
+		 * e vai retornando a lista nesse .body(list)
+		 */
+		List<Product> list = ProductRepository.findAll();
+		return ResponseEntity.ok().body(list);
+		
+		//ESSE .OK É QUANDO DÁ TUDO CERTO, RESPOSTA
+		//200 DO PROTOCOLO HTTP
+	}
+	
+	@GetMapping(value = "/{id}")//utilizando essa annotation
+	public ResponseEntity<Product> findById(@PathVariable Long id){
+		//@pathvariable ele vai adicionar no endereço 
+		//vai reconhecer o /1 do navegador por exemplo
+		//e vai se ajustar de acordo com o id do parâmetro
+		//do método, o cat retorna o id da requisição
+		//que vai buscar no db o id da requisição
+		Product cat = ProductRepository.findById(id);
+		return ResponseEntity.ok().body(cat);
+	}
+	
+}

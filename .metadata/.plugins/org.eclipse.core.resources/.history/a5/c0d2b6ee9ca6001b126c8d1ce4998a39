@@ -1,0 +1,69 @@
+package com.osmarcode.myfirstproject.resources;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.osmarcode.myfirstproject.entities.Category;
+import com.osmarcode.myfirstproject.repositories.CategoryRepository;
+
+@RestController //define que essa classe será um recurso REST
+//mapping define o caminho por onde o recurso irá responder
+@RequestMapping(value = "/categories")
+public class CategoryResource {
+
+	
+	@Autowired //injeção de dependência automática
+	//sempre que instanciar um categoryresource, ele sempre 
+	//terá automaticamente uma instancia do categoryrepository
+	//que já está aqui logo abaixo na dependência da classe
+	//MAS PARA FUNCIONAR, NO CATEGORYREPOSITORY FOI COLOCADO
+	//@COMPONENT 
+	private CategoryRepository categoryRepository;
+	
+	
+	//quando for executado uma chamada no "/categorias"
+	//será chamado o GetMapping
+	//objeto que <> é considerado generic
+	//assinatura do método que retorna todas as categorias
+	@GetMapping 
+	public ResponseEntity<List<Category>> findAll(){
+		//list puxando do categoryrepository fazendo uma instância
+		//usando injeção de dependência no springboot
+		//existem várias formas para implementar
+		/*
+		 * Com constructor
+		 * Com método set
+		 * Ou utilizando um framework
+		 * esse findAll vai acessar o db e mostrar na lista
+		 * e vai retornando a lista nesse .body(list)
+		 */
+		List<Category> list = categoryRepository.findAll();
+		return ResponseEntity.ok().body(list);
+		
+		//ESSE .OK É QUANDO DÁ TUDO CERTO, RESPOSTA
+		//200 DO PROTOCOLO HTTP
+	}
+	
+	@GetMapping(value = "/{id}")//utilizando essa annotation
+	public ResponseEntity<Category> findById(@PathVariable Long id){
+		//@pathvariable ele vai adicionar no endereço 
+		//vai reconhecer o /1 do navegador por exemplo
+		//e vai se ajustar de acordo com o id do parâmetro
+		//do método, o cat retorna o id da requisição
+		//que vai buscar no db o id da requisição
+		//TEM QUE COLOCAR UM GET DEPOIS DO FINDBYID DO SPRINGDATAJPA
+		//PORQUE ELE NÃO RETORNA NULL, RETORNA UM OPTIONAL QUE PODE OU
+		//NÃO TER UM OBJETO DENTRO DELE
+		//DENTRO DO GET QUE IRÁ OBTER O OBJETO QUE ESTÁ DENTRO DO OPTIONAL
+		//NESSE CASO O ID QUE ESTÁ INFORMADO
+		Category cat = categoryRepository.findById(id);
+		return ResponseEntity.ok().body(cat);
+	}
+	
+}

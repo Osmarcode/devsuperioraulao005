@@ -1,0 +1,13 @@
+package com.osmarcode.myfirstproject;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class MyfirstprojectApplication implements CommandLineRunner{
+
+	public static void main(String[] args) {
+		SpringApplication.run(MyfirstprojectApplication.class, args);
+	}
+
+}

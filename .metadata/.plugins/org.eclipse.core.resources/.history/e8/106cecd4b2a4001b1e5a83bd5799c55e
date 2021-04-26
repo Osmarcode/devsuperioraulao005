@@ -1,0 +1,5 @@
+package com.osmarcode.myfirstproject.entities;
+
+public class Category {
+
+}

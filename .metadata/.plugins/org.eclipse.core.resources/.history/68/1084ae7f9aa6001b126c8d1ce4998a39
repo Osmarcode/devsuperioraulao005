@@ -1,0 +1,69 @@
+package com.osmarcode.myfirstproject.repositories;
+
+
+import org.springframework.stereotype.Repository;
+
+import com.osmarcode.myfirstproject.entities.Category;
+
+
+//A CLASSE CategoryRepository vira uma interface
+//JPAREPOSITORY É UM GENERICS, TEM QUE INFORMAR O TIPO DA ENTIDADE
+//Entidade Category é do tipo Category
+//E O tipo do ID é Long
+@Repository
+public interface CategoryRepository extends JpaRepository<Category, Long>{
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*TUDO FOI SUBSTITUIDO PELO JPAREPOSITORY<Entity, ID> 
+	 * que é um repository do spring também
+	 * private Map<Long, Category> map = new HashMap<>();
+	//TUDO ISSO ESTÁ GUARDANDO EM MEMÓRIA POR ENQUANTO
+	//map => é uma coleção de pares (chave valor)
+	//aqui vou guardar uma coleção de pares (Long que será o id
+	//do tipo Category) então a categoria 1 será isso, a categoria 2
+	//será outra coisa, fica mais fácil de localizar um objeto 
+	//utilizando o id para buscar com mais facilidade
+	//Map no java é uma Interface e deve instanciar uma classe
+	//que implemente uma classe, igual a List com ArrayList
+	//List é uma Interface deve instanciar uma classe que implemente
+	//uma classe
+	
+	//salvando e inserindo uma nova categoria
+	//na categoria provisória em memória
+	public void save(Category obj) {
+		map.put(obj.getId(), obj);
+	}
+	
+	//retorna o objeto conforme a chave(id) que informei
+	public Category findById(Long id) {
+		return map.get(id);
+	}
+	
+	//instanciando um novo ArrayList que pega todos os valores
+	//e vai instanciar uma nova lista com todos os valores
+	public List<Category> findAll(){
+		return new ArrayList<Category>(map.values());
+	}*/
+
+}

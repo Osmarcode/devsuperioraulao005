@@ -1,0 +1,5 @@
+package com.osmarcode.myfirstproject.repositories;
+
+public class CategoryRepository {
+
+}
